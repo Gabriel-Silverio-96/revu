@@ -18,7 +18,7 @@ export default function HomeScreen() {
         Your daily companion to smarter,{breakLine} faster learning.
       </Text>
       <View style={styles.action}>
-        <Link href="/explore" style={styles.button}>
+        <Link href="/collection" style={styles.button}>
           <Text style={{ color: "#fff", fontWeight: "bold" }}>Get started</Text>
         </Link>
       </View>
