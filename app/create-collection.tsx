@@ -1,81 +1,18 @@
 import { Button } from "@/components/Button";
+import { FormCreateFlashcard } from "@/components/FormCreateFlashcard";
 import { TextInput } from "@/components/TextInput";
-import { useState } from "react";
-import { Alert, ScrollView, StyleSheet, Text, View } from "react-native";
-import * as Crypto from "expo-crypto";
-import {
-  FormCreateFlashcard,
-  HandleChangeValue,
-} from "@/components/FormCreateFlashcard";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { ICollections, IFlashcard } from "@/types/app.types";
-
-const generateCollection = () => ({
-  id: Crypto.randomUUID(),
-  name: "",
-  flashcards: [
-    {
-      id: Crypto.randomUUID(),
-      question: "",
-      answer: "",
-    },
-  ],
-});
+import { useCollection } from "@/hooks/useCollection";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 
 export default function CreateCollection() {
-  const [collection, setCollection] = useState<ICollections>(
-    generateCollection()
-  );
-
-  const handleAddFlashcard = () => {
-    const newFlashcard: IFlashcard = {
-      id: Crypto.randomUUID(),
-      question: "",
-      answer: "",
-    };
-
-    setCollection((prev) => ({
-      ...prev,
-      flashcards: [...prev.flashcards, newFlashcard],
-    }));
-  };
-
-  const handleChangeValue = ({ id, field, value }: HandleChangeValue) => {
-    setCollection((prev) => ({
-      ...prev,
-      flashcards: prev.flashcards.map((card) =>
-        card.id === id ? { ...card, [field]: value } : card
-      ),
-    }));
-  };
-
-  const handleDeleteQuestion = (id: string) => {
-    const flashcards = collection.flashcards.filter(
-      (flashcard) => flashcard.id !== id
-    );
-
-    setCollection((prev) => ({ ...prev, flashcards }));
-  };
-
-  const handleSave = async () => {
-    try {
-      const existingData = await AsyncStorage.getItem("collections");
-      const parsedData: ICollections[] = existingData
-        ? JSON.parse(existingData)
-        : [];
-
-      const updatedCollections = [...parsedData, collection];
-      await AsyncStorage.setItem(
-        "collections",
-        JSON.stringify(updatedCollections)
-      );
-
-      Alert.alert("Success", "Collection saved successfully!");
-    } catch (error) {
-      Alert.alert("Error", "Failed to save collection");
-    }
-  };
-
+  const {
+    collection,
+    setCollection,
+    handleAddFlashcard,
+    handleChangeValue,
+    handleDeleteQuestion,
+    handleSave,
+  } = useCollection();
   const isHiddenForSingleFlashcard = collection.flashcards.length > 1;
 
   return (
