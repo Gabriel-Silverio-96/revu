@@ -2,12 +2,6 @@ import { TextInput } from "@/components/TextInput";
 import { IFlashcard } from "@/types/app.types";
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 
-export interface HandleChangeValue {
-  id: string;
-  field: keyof IFlashcard;
-  value: string;
-}
-
 interface IFormCreateFlashcard {
   handleDeleteQuestion: (id: string) => void;
   handleChangeValue: (params: HandleChangeValue) => void;
