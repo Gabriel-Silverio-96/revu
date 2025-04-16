@@ -1,15 +1,10 @@
 import { TextInput } from "@/components/TextInput";
+import { IFlashcard } from "@/types/app.types";
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
-
-export interface Flashcard {
-  id: string;
-  question: string;
-  answer: string;
-}
 
 export interface HandleChangeValue {
   id: string;
-  field: keyof Flashcard;
+  field: keyof IFlashcard;
   value: string;
 }
 
@@ -17,7 +12,7 @@ interface IFormCreateFlashcard {
   handleDeleteQuestion: (id: string) => void;
   handleChangeValue: (params: HandleChangeValue) => void;
   hiddenDelete: boolean;
-  flashcards: Array<Flashcard>;
+  flashcards: Array<IFlashcard>;
 }
 
 export function FormCreateFlashcard({
@@ -28,7 +23,7 @@ export function FormCreateFlashcard({
 }: IFormCreateFlashcard) {
   return (
     <>
-      {flashcards.map(({ id, question, answer }: any) => {
+      {flashcards.map(({ id, question, answer }) => {
         return (
           <View key={id}>
             <View style={styles.action}>

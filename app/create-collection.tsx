@@ -8,18 +8,7 @@ import {
   HandleChangeValue,
 } from "@/components/FormCreateFlashcard";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
-interface IFlashcard {
-  id: string;
-  question: string;
-  answer: string;
-}
-
-interface ICollections {
-  id: string;
-  name: string;
-  flashcards: Array<IFlashcard> | [];
-}
+import { ICollections, IFlashcard } from "@/types/app.types";
 
 const generateCollection = () => ({
   id: Crypto.randomUUID(),
@@ -84,7 +73,6 @@ export default function CreateCollection() {
       Alert.alert("Success", "Collection saved successfully!");
     } catch (error) {
       Alert.alert("Error", "Failed to save collection");
-      console.error("Saving error:", error);
     }
   };
 
