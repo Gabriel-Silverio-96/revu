@@ -1,5 +1,4 @@
 import { Href, Link } from "expo-router";
-import { LinkComponent } from "expo-router/build/link/Link";
 import { StyleSheet, Text } from "react-native";
 
 interface IButtonLink {
