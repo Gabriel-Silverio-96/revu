@@ -9,3 +9,9 @@ export interface ICollections {
   name: string;
   flashcards: Array<IFlashcard> | [];
 }
+
+export interface HandleChangeValue {
+  id: string;
+  field: keyof IFlashcard;
+  value: string;
+}
