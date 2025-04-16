@@ -17,7 +17,7 @@ interface ICollections {
   flashcards: Array<IFlashcards>;
 }
 
-export default function TabTwoScreen() {
+export default function Collections() {
   const [collections, setCollections] = useState<Array<ICollections>>([]);
 
   const isShowMessageEmptyCollection = collections?.length === 0;
