@@ -1,5 +1,5 @@
 import { TextInput } from "@/components/TextInput";
-import { IFlashcard } from "@/types/app.types";
+import { HandleChangeValue, IFlashcard } from "@/types/app.types";
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 
 interface IFormCreateFlashcard {
