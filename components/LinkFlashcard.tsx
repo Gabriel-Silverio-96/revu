@@ -18,11 +18,12 @@ export function LinkFlashcard({
   children,
   icon = initialIcon,
 }: ILinkFlashcard) {
-  const href = `/collection`; // flashcards?id=1
-
   return (
     <View style={styles.linkFlashcard}>
-      <Link href={href} style={styles.link}>
+      <Link
+        href={{ pathname: "/flashcards/[id]", params: { id } }}
+        style={styles.link}
+      >
         {children}
       </Link>
       {icon}
