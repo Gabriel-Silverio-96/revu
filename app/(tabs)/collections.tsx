@@ -1,8 +1,6 @@
 import { ButtonLink } from "@/components/ButtonLink";
 import { LinkFlashcard } from "@/components/LinkFlashcard";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useFocusEffect } from "expo-router";
-import { useCallback, useState } from "react";
+import { useGetStorage } from "@/hooks/useGetStorage";
 import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
 interface IFlashcards {
@@ -18,34 +16,11 @@ interface ICollection {
 }
 
 export default function Collections() {
-  const [collections, setCollections] = useState<Array<ICollection>>([]);
+  const { data } = useGetStorage<Array<ICollection>>({ key: "collections" });
 
-  const isShowMessageEmptyCollection = collections?.length === 0;
+  const isShowMessageEmptyCollection = data?.length === 0;
   const breakLine = "\n";
 
-  useFocusEffect(
-    useCallback(() => {
-      const loadCollections = async () => {
-        try {
-          const storedCollections = await AsyncStorage.getItem("collections");
-
-          if (storedCollections !== null) {
-            const parsedCollections: Array<ICollection> =
-              JSON.parse(storedCollections);
-
-            setCollections(parsedCollections);
-            return;
-          }
-
-          setCollections([]);
-        } catch (error) {
-          console.error("Failed to load collections:", error);
-        }
-      };
-
-      loadCollections();
-    }, [])
-  );
   return (
     <View style={styles.wrapper}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -69,7 +44,7 @@ export default function Collections() {
           </View>
         )}
 
-        {collections?.map(({ id, name }) => (
+        {data?.map(({ id, name }) => (
           <LinkFlashcard key={id} id={id}>
             {name}
           </LinkFlashcard>
