@@ -32,6 +32,7 @@ export default function CreateCollection() {
 
         <Text style={styles.description}>Name of collection</Text>
         <TextInput
+          style={{ marginBottom: 15 }}
           value={collection.name}
           onChangeText={(text) =>
             setCollection((prev) => ({ ...prev, name: text }))

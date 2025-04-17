@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 import { defineEditField } from "@/hooks/useCollection/utils/define-edit-field";
 import { generateCollection } from "@/hooks/useCollection/utils/generate-collection";
+import { isEmptyFields } from "./utils/is-empty-fields";
 
 interface useCollection {
   initialState?: ICollections | undefined;
@@ -56,6 +57,14 @@ export function useCollection({ initialState }: useCollection = {}) {
 
   const handleSave = useCallback(async () => {
     try {
+      if (isEmptyFields(collection)) {
+        Alert.alert(
+          "Error",
+          "Please fill in the name, question, and answer fields."
+        );
+        return;
+      }
+
       const existingData = await AsyncStorage.getItem("collections");
       const parsedData: ICollections[] = existingData
         ? JSON.parse(existingData)
