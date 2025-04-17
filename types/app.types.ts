@@ -4,7 +4,7 @@ export interface IFlashcard {
   answer: string;
 }
 
-export interface ICollections {
+export interface ICollection {
   id: string;
   name: string;
   flashcards: Array<IFlashcard> | [];

@@ -1,4 +1,4 @@
-import { HandleChangeValue, ICollections, IFlashcard } from "@/types/app.types";
+import { HandleChangeValue, ICollection, IFlashcard } from "@/types/app.types";
 import * as Crypto from "expo-crypto";
 import { useCallback, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -8,11 +8,11 @@ import { generateCollection } from "@/hooks/useCollection/utils/generate-collect
 import { isEmptyFields } from "./utils/is-empty-fields";
 
 interface useCollection {
-  initialState?: ICollections | undefined;
+  initialState?: ICollection | undefined;
 }
 
 export function useCollection({ initialState }: useCollection = {}) {
-  const [collection, setCollection] = useState<ICollections>(
+  const [collection, setCollection] = useState<ICollection>(
     initialState || generateCollection()
   );
 
@@ -66,7 +66,7 @@ export function useCollection({ initialState }: useCollection = {}) {
       }
 
       const existingData = await AsyncStorage.getItem("collections");
-      const parsedData: ICollections[] = existingData
+      const parsedData: ICollection[] = existingData
         ? JSON.parse(existingData)
         : [];
 

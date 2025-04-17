@@ -11,14 +11,14 @@ interface IFlashcards {
   answer: string;
 }
 
-interface ICollections {
+interface ICollection {
   id: string;
   name: string;
   flashcards: Array<IFlashcards>;
 }
 
 export default function Collections() {
-  const [collections, setCollections] = useState<Array<ICollections>>([]);
+  const [collections, setCollections] = useState<Array<ICollection>>([]);
 
   const isShowMessageEmptyCollection = collections?.length === 0;
   const breakLine = "\n";
@@ -30,7 +30,7 @@ export default function Collections() {
           const storedCollections = await AsyncStorage.getItem("collections");
 
           if (storedCollections !== null) {
-            const parsedCollections: Array<ICollections> =
+            const parsedCollections: Array<ICollection> =
               JSON.parse(storedCollections);
 
             setCollections(parsedCollections);
