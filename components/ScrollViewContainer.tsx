@@ -2,24 +2,15 @@ import { ScrollView, ScrollViewProps, StyleSheet } from "react-native";
 
 interface IScrollViewContainer extends ScrollViewProps {
   children: React.ReactNode;
-  paddingTop?: 0 | 1 | 2 | 3 | 4 | 5;
+  paddingTop?: number;
 }
-
-const paddingTopStyles = {
-  0: { paddingTop: 0 },
-  1: { paddingTop: 10 },
-  2: { paddingTop: 20 },
-  3: { paddingTop: 30 },
-  4: { paddingTop: 40 },
-  5: { paddingTop: 50 },
-} as const;
 
 export function ScrollViewContainer({
   children,
-  paddingTop = 1,
+  paddingTop = 10,
   ...rest
 }: IScrollViewContainer) {
-  const paddingTopStyle = paddingTopStyles[paddingTop];
+  const paddingTopStyle = { paddingTop };
 
   return (
     <ScrollView

@@ -15,7 +15,7 @@ export default function Collections() {
 
   return (
     <View style={styles.wrapper}>
-      <ScrollViewContainer paddingTop={5}>
+      <ScrollViewContainer paddingTop={50}>
         <Text style={styles.title}>Collections</Text>
         <Text style={styles.description}>
           Start building your knowledge library. Add a question, write the
