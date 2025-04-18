@@ -1,6 +1,7 @@
 import { Button } from "@/components/Button";
 import { Card } from "@/components/Card";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
+import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
 import { useGetStorage } from "@/hooks/useGetStorage";
 import { ICollection } from "@/types/app.types";
@@ -39,7 +40,9 @@ export default function Flashcards() {
   return (
     <View style={styles.wrapper}>
       <ScrollViewContainer>
-        <Text style={[styles.title, styles.mainTitle]}>{collection.name}</Text>
+        <Typography variant="h2" style={styles.title}>
+          {collection.name}
+        </Typography>
 
         <Card
           open={isShowAnswer}
@@ -57,12 +60,18 @@ export default function Flashcards() {
       </ScrollViewContainer>
 
       <View style={styles.fixedButtonContainer}>
-        <Button variant="outlined" onPress={handleBack} disabled={active === 0}>
+        <Button
+          variant="outlined"
+          onPress={handleBack}
+          disabled={active === 0}
+          style={styles.button}
+        >
           Back
         </Button>
         <Button
           onPress={handleNext}
           disabled={collection.flashcards.length === active + 1}
+          style={styles.button}
         >
           Next
         </Button>
@@ -77,13 +86,12 @@ const styles = StyleSheet.create({
     position: "relative",
   },
 
-  mainTitle: {
+  title: {
     marginBottom: 15,
   },
 
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
+  button: {
+    width: 100,
   },
 
   fixedButtonContainer: {

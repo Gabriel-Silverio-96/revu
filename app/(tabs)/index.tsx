@@ -1,6 +1,7 @@
+import { ButtonLink } from "@/components/ButtonLink";
+import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
-import { Link } from "expo-router";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   return (
@@ -10,16 +11,16 @@ export default function HomeScreen() {
         source={require("@/assets/images/background-get-started.png")}
       />
 
-      <Text style={styles.title}>
+      <Typography variant="h1" style={styles.title}>
         Review {App.breakLine}remember and {App.breakLine}repeat
-      </Text>
-      <Text style={styles.description}>
+      </Typography>
+      <Typography variant="description" style={styles.description}>
         Your daily companion to smarter,{App.breakLine} faster learning.
-      </Text>
+      </Typography>
       <View style={styles.action}>
-        <Link href="/collections" style={styles.button}>
-          <Text style={{ color: "#fff", fontWeight: "bold" }}>Get started</Text>
-        </Link>
+        <ButtonLink href="/collections" style={styles.button}>
+          Get started
+        </ButtonLink>
       </View>
     </View>
   );
@@ -34,23 +35,15 @@ const styles = StyleSheet.create({
     width: 346,
   },
   title: {
-    fontSize: 40,
     fontWeight: "bold",
     textAlign: "center",
     lineHeight: 45,
   },
   description: {
     textAlign: "center",
-    color: "#A1A1A1",
-    fontSize: 13,
-    marginTop: 15,
   },
   button: {
     width: 174,
-    padding: 15,
-    textAlign: "center",
-    backgroundColor: "#7C87FF",
-    borderRadius: 9,
   },
   action: {
     justifyContent: "center",

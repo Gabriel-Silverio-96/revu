@@ -1,10 +1,11 @@
-import { App } from "@/constants/App";
 import { ButtonLink } from "@/components/ButtonLink";
 import { LinkFlashcard } from "@/components/LinkFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
+import { Typography } from "@/components/Typography";
+import { App } from "@/constants/App";
 import { useGetStorage } from "@/hooks/useGetStorage";
-import { Image, StyleSheet, Text, View } from "react-native";
 import { ICollection } from "@/types/app.types";
+import { Image, StyleSheet, View } from "react-native";
 
 export default function Collections() {
   const { data } = useGetStorage<Array<ICollection>>({
@@ -16,12 +17,12 @@ export default function Collections() {
   return (
     <View style={styles.wrapper}>
       <ScrollViewContainer paddingTop={50}>
-        <Text style={styles.title}>Collections</Text>
-        <Text style={styles.description}>
+        <Typography variant="h2">Collections</Typography>
+        <Typography variant="description">
           Start building your knowledge library. Add a question, write the
           answer, and organize your flashcards by topic. The more you create,
           the more you'll retain!
-        </Text>
+        </Typography>
 
         {isShowMessageEmptyCollection && (
           <View>
@@ -29,10 +30,10 @@ export default function Collections() {
               style={styles.backgroundImage}
               source={require("@/assets/images/empty-collection.png")}
             />
-            <Text style={[styles.description, styles.textCenter]}>
+            <Typography variant="description" style={styles.textCenter}>
               Looks like your collection is empty.{App.breakLine}Start by
               creating your first one!
-            </Text>
+            </Typography>
           </View>
         )}
 
@@ -57,18 +58,8 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "relative",
   },
-
   textCenter: {
     textAlign: "center",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  description: {
-    color: "#A1A1A1",
-    fontSize: 13,
-    marginTop: 15,
   },
   backgroundImage: {
     height: 346,

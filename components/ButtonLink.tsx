@@ -1,14 +1,14 @@
-import { Href, Link } from "expo-router";
+import { Href, Link, LinkProps } from "expo-router";
 import { StyleSheet, Text } from "react-native";
 
-interface IButtonLink {
+interface IButtonLink extends LinkProps {
   href: Href;
   children: React.ReactNode;
 }
 
-export function ButtonLink({ href, children }: IButtonLink) {
+export function ButtonLink({ href, children, style, ...rest }: IButtonLink) {
   return (
-    <Link href={href} style={styles.button}>
+    <Link href={href} style={[styles.button, style]} {...rest}>
       <Text style={styles.text}>{children}</Text>
     </Link>
   );
