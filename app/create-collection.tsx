@@ -3,7 +3,7 @@ import { FormCreateFlashcard } from "@/components/FormCreateFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { TextInput } from "@/components/TextInput";
 import { useCollection } from "@/hooks/useCollection";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 export default function CreateCollection() {
   const {
