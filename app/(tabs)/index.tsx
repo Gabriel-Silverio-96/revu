@@ -1,9 +1,8 @@
+import { App } from "@/constants/App";
 import { Link } from "expo-router";
 import { Image, StyleSheet, Text, View } from "react-native";
 
 export default function HomeScreen() {
-  const breakLine = "\n";
-
   return (
     <View style={styles.container}>
       <Image
@@ -12,10 +11,10 @@ export default function HomeScreen() {
       />
 
       <Text style={styles.title}>
-        Review {breakLine}remember and {breakLine}repeat
+        Review {App.breakLine}remember and {App.breakLine}repeat
       </Text>
       <Text style={styles.description}>
-        Your daily companion to smarter,{breakLine} faster learning.
+        Your daily companion to smarter,{App.breakLine} faster learning.
       </Text>
       <View style={styles.action}>
         <Link href="/collections" style={styles.button}>

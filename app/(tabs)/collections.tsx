@@ -1,3 +1,4 @@
+import { App } from "@/constants/App";
 import { ButtonLink } from "@/components/ButtonLink";
 import { LinkFlashcard } from "@/components/LinkFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
@@ -20,7 +21,6 @@ export default function Collections() {
   const { data } = useGetStorage<Array<ICollection>>({ key: "collections" });
 
   const isShowMessageEmptyCollection = data === null;
-  const breakLine = "\n";
 
   return (
     <View style={styles.wrapper}>
@@ -39,8 +39,8 @@ export default function Collections() {
               source={require("@/assets/images/empty-collection.png")}
             />
             <Text style={[styles.description, styles.textCenter]}>
-              Looks like your collection is empty.{breakLine}Start by creating
-              your first one!
+              Looks like your collection is empty.{App.breakLine}Start by
+              creating your first one!
             </Text>
           </View>
         )}
