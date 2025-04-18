@@ -6,15 +6,20 @@ import { App } from "@/constants/App";
 import { useGetStorage } from "@/hooks/useGetStorage";
 import { ICollection } from "@/types/app.types";
 import { findById } from "@/utils/find-by-id";
-import { useLocalSearchParams } from "expo-router";
-import { useState } from "react";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useLayoutEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 
 export default function Flashcards() {
   const { id } = useLocalSearchParams();
+  const navigation = useNavigation();
   const { data } = useGetStorage<Array<ICollection>>({
     key: App.keyStorage.collections,
   });
+
+  useLayoutEffect(() => {
+    navigation.setOptions({ title: "Flashcard" });
+  }, []);
 
   const [isShowAnswer, setShowAnswer] = useState(false);
   const [active, setActive] = useState(0);
