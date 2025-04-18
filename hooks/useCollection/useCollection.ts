@@ -86,7 +86,7 @@ export function useCollection({ initialState }: useCollection = {}) {
     }
   }, [collection]);
 
-  const handleSaveEdit = useCallback(
+  const handleEditSave = useCallback(
     async (id: string | string[]) => {
       try {
         if (isEmptyFields(collection)) {
@@ -131,6 +131,6 @@ export function useCollection({ initialState }: useCollection = {}) {
     handleChangeValue,
     handleDeleteQuestion,
     handleSave,
-    handleSaveEdit,
+    handleEditSave,
   };
 }

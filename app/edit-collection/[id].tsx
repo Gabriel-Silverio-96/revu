@@ -20,7 +20,7 @@ export default function EditCollection() {
     handleAddFlashcard,
     handleChangeValue,
     handleDeleteQuestion,
-    handleSaveEdit,
+    handleEditSave,
   } = useCollection();
 
   useEffect(() => {
@@ -74,7 +74,7 @@ export default function EditCollection() {
 
       <View style={styles.buttonBackground}>
         <View style={styles.fixedButtonContainer}>
-          <Button onPress={() => handleSaveEdit(id)}>Save</Button>
+          <Button onPress={() => handleEditSave(id)}>Save</Button>
         </View>
       </View>
     </View>

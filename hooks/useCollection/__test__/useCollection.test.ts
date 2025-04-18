@@ -94,7 +94,7 @@ describe("useCollection hook", () => {
       useCollection({ initialState: updatedCollection })
     );
 
-    result.current.handleSaveEdit("123");
+    result.current.handleEditSave("123");
 
     await waitFor(() => {
       expect(AsyncStorage.setItem).toHaveBeenCalledWith(
