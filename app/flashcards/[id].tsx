@@ -1,4 +1,5 @@
 import { Button } from "@/components/Button";
+import { Card } from "@/components/Card";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { App } from "@/constants/App";
 import { useGetStorage } from "@/hooks/useGetStorage";
@@ -35,20 +36,17 @@ export default function Flashcards() {
 
   const currentFlashcard = collection.flashcards[active];
 
-  const defineCardStyle = isShowAnswer
-    ? [styles.card, styles.openCard]
-    : [styles.card];
-
   return (
     <View style={styles.wrapper}>
       <ScrollViewContainer>
         <Text style={[styles.title, styles.mainTitle]}>{collection.name}</Text>
-        <View style={defineCardStyle}>
-          <Text style={styles.title}>{currentFlashcard?.question}</Text>
-          {isShowAnswer && (
-            <Text style={styles.description}>{currentFlashcard?.answer}</Text>
-          )}
-        </View>
+
+        <Card
+          open={isShowAnswer}
+          title={currentFlashcard?.question}
+          describe={currentFlashcard?.answer}
+        />
+
         <Button
           variant="outlined"
           style={{ marginTop: 50 }}
@@ -83,30 +81,10 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
 
-  // Card
-  card: {
-    backgroundColor: "#FFE7CF",
-    padding: 25,
-    height: 200,
-    display: "flex",
-    justifyContent: "space-between",
-    borderRadius: 10,
-  },
-
-  openCard: {
-    height: 350,
-  },
-
   title: {
     fontSize: 24,
     fontWeight: "bold",
   },
-
-  description: {
-    fontSize: 16,
-  },
-
-  ///
 
   fixedButtonContainer: {
     position: "absolute",
