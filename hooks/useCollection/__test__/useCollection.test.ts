@@ -103,6 +103,7 @@ describe("useCollection hook", () => {
       );
     });
 
+    expect(updatedCollection).not.toEqual(initialState);
     expect(Alert.alert).toHaveBeenCalledWith(
       "Success",
       "Collection edited successfully!"
