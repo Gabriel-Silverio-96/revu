@@ -4,18 +4,7 @@ import { LinkFlashcard } from "@/components/LinkFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { useGetStorage } from "@/hooks/useGetStorage";
 import { Image, StyleSheet, Text, View } from "react-native";
-
-interface IFlashcards {
-  id: string;
-  question: string;
-  answer: string;
-}
-
-interface ICollection {
-  id: string;
-  name: string;
-  flashcards: Array<IFlashcards>;
-}
+import { ICollection } from "@/types/app.types";
 
 export default function Collections() {
   const { data } = useGetStorage<Array<ICollection>>({ key: "collections" });
