@@ -1,5 +1,5 @@
 import { Button } from "@/components/Button";
-import { FormCreateFlashcard } from "@/components/FormCreateFlashcard";
+import { FormFlashcard } from "@/components/FormFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
@@ -58,7 +58,7 @@ export default function EditCollection() {
         />
 
         <Typography variant="h2">Questions</Typography>
-        <FormCreateFlashcard
+        <FormFlashcard
           handleDeleteQuestion={handleDeleteQuestion}
           handleChangeValue={handleChangeValue}
           hiddenDelete={isHiddenForSingleFlashcard}
