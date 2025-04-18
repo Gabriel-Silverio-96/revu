@@ -9,7 +9,7 @@ interface IFormCreateFlashcard {
   flashcards: Array<IFlashcard>;
 }
 
-export function FormCreateFlashcard({
+export function FormFlashcard({
   handleDeleteQuestion,
   handleChangeValue,
   hiddenDelete,

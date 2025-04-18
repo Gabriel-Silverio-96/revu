@@ -2,6 +2,7 @@ import { renderHook, act, waitFor } from "@testing-library/react-native";
 import { useCollection } from "../useCollection";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
+import { App } from "@/constants/App";
 
 jest.mock("@react-native-async-storage/async-storage", () => ({
   getItem: jest.fn(),
@@ -77,6 +78,36 @@ describe("useCollection hook", () => {
         "Collection saved successfully!"
       );
     });
+  });
+
+  it("edits an existing collection and saves to AsyncStorage", async () => {
+    (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(
+      JSON.stringify([initialState])
+    );
+
+    const updatedCollection = {
+      ...initialState,
+      name: "Math - Updated",
+    };
+
+    const { result } = renderHook(() =>
+      useCollection({ initialState: updatedCollection })
+    );
+
+    result.current.handleEditSave("123");
+
+    await waitFor(() => {
+      expect(AsyncStorage.setItem).toHaveBeenCalledWith(
+        App.keyStorage.collections,
+        JSON.stringify([updatedCollection])
+      );
+    });
+
+    expect(updatedCollection).not.toEqual(initialState);
+    expect(Alert.alert).toHaveBeenCalledWith(
+      "Success",
+      "Collection edited successfully!"
+    );
   });
 
   it("handles error save", async () => {

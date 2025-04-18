@@ -26,7 +26,13 @@ export function LinkFlashcard({
       >
         {children}
       </Link>
-      {icon}
+
+      <Link
+        href={{ pathname: "/edit-collection/[id]", params: { id } }}
+        style={styles.link}
+      >
+        {icon}
+      </Link>
     </View>
   );
 }

@@ -3,20 +3,33 @@ import { FormFlashcard } from "@/components/FormFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
+import { App } from "@/constants/App";
 import { useCollection } from "@/hooks/useCollection";
-import { useNavigation } from "expo-router";
-import { useLayoutEffect } from "react";
+import { useGetStorage } from "@/hooks/useGetStorage";
+import { findById } from "@/utils/find-by-id";
+import { useLocalSearchParams, useNavigation } from "expo-router";
+import { useEffect, useLayoutEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
-export default function CreateCollection() {
+export default function EditCollection() {
+  const { id } = useLocalSearchParams();
+  const { data } = useGetStorage({ key: App.keyStorage.collections });
   const {
     collection,
     setCollection,
     handleAddFlashcard,
     handleChangeValue,
     handleDeleteQuestion,
-    handleSave,
+    handleEditSave,
   } = useCollection();
+
+  useEffect(() => {
+    if (data) {
+      const initialState = findById({ data, id });
+      setCollection(initialState);
+    }
+  }, [data, id]);
+
   const navigation = useNavigation();
 
   useLayoutEffect(() => {
@@ -28,10 +41,11 @@ export default function CreateCollection() {
   return (
     <View style={styles.wrapper}>
       <ScrollViewContainer>
-        <Typography variant="h2">Create a flashcards</Typography>
+        <Typography variant="h2">Edit flashcards</Typography>
         <Typography variant="description">
-          Start creating your flashcards. Add questions, write clear answers,
-          and group them into collections.
+          Make changes to your flashcards here. You can update the question,
+          answer, or delete the card entirely. Don't forget to save when you're
+          done!
         </Typography>
 
         <Typography variant="description">Name of collection</Typography>
@@ -60,7 +74,7 @@ export default function CreateCollection() {
 
       <View style={styles.buttonBackground}>
         <View style={styles.fixedButtonContainer}>
-          <Button onPress={handleSave}>Save</Button>
+          <Button onPress={() => handleEditSave(id)}>Save</Button>
         </View>
       </View>
     </View>
