@@ -1,5 +1,6 @@
 import { Button } from "@/components/Button";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
+import { App } from "@/constants/App";
 import { useGetStorage } from "@/hooks/useGetStorage";
 import { ICollection } from "@/types/app.types";
 import { findById } from "@/utils/find-by-id";
@@ -9,7 +10,9 @@ import { StyleSheet, Text, View } from "react-native";
 
 export default function Flashcards() {
   const { id } = useLocalSearchParams();
-  const { data } = useGetStorage<Array<ICollection>>({ key: "collections" });
+  const { data } = useGetStorage<Array<ICollection>>({
+    key: App.keyStorage.collections,
+  });
 
   const [isShowAnswer, setShowAnswer] = useState(false);
   const [active, setActive] = useState(0);

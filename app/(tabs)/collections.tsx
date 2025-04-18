@@ -7,7 +7,9 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { ICollection } from "@/types/app.types";
 
 export default function Collections() {
-  const { data } = useGetStorage<Array<ICollection>>({ key: "collections" });
+  const { data } = useGetStorage<Array<ICollection>>({
+    key: App.keyStorage.collections,
+  });
 
   const isShowMessageEmptyCollection = data === null;
 
