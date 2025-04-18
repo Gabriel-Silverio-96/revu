@@ -1,8 +1,12 @@
 import { Button } from "@/components/Button";
 import { FormCreateFlashcard } from "@/components/FormCreateFlashcard";
+import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { TextInput } from "@/components/TextInput";
+import { Typography } from "@/components/Typography";
 import { useCollection } from "@/hooks/useCollection";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { useNavigation } from "expo-router";
+import { useLayoutEffect } from "react";
+import { StyleSheet, View } from "react-native";
 
 export default function CreateCollection() {
   const {
@@ -13,24 +17,24 @@ export default function CreateCollection() {
     handleDeleteQuestion,
     handleSave,
   } = useCollection();
+  const navigation = useNavigation();
+
+  useLayoutEffect(() => {
+    navigation.setOptions({ title: "" });
+  }, []);
+
   const isHiddenForSingleFlashcard = collection.flashcards.length > 1;
 
   return (
     <View style={styles.wrapper}>
-      <ScrollView
-        scrollEventThrottle={16}
-        decelerationRate="fast" // or 'normal', try also 0 if needed
-        overScrollMode="never" // removes glow effect on Android
-        bounces={false} // iOS only
-        contentContainerStyle={styles.container}
-      >
-        <Text style={styles.title}>Create a flashcards</Text>
-        <Text style={styles.description}>
+      <ScrollViewContainer>
+        <Typography variant="h2">Create a flashcards</Typography>
+        <Typography variant="description">
           Start creating your flashcards. Add questions, write clear answers,
           and group them into collections.
-        </Text>
+        </Typography>
 
-        <Text style={styles.description}>Name of collection</Text>
+        <Typography variant="description">Name of collection</Typography>
         <TextInput
           style={{ marginBottom: 15 }}
           value={collection.name}
@@ -39,7 +43,7 @@ export default function CreateCollection() {
           }
         />
 
-        <Text style={styles.title}>Questions</Text>
+        <Typography variant="h2">Questions</Typography>
         <FormCreateFlashcard
           handleDeleteQuestion={handleDeleteQuestion}
           handleChangeValue={handleChangeValue}
@@ -52,7 +56,7 @@ export default function CreateCollection() {
             Add
           </Button>
         </View>
-      </ScrollView>
+      </ScrollViewContainer>
 
       <View style={styles.buttonBackground}>
         <View style={styles.fixedButtonContainer}>
@@ -67,20 +71,6 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     position: "relative",
-  },
-  container: {
-    paddingTop: 50,
-    paddingBottom: 100,
-    paddingHorizontal: 24,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  description: {
-    color: "#A1A1A1",
-    fontSize: 13,
-    marginTop: 15,
   },
   fixedButtonContainer: {
     position: "absolute",

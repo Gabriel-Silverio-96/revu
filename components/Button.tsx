@@ -13,14 +13,17 @@ export function Button({
   style,
   children,
   variant = "contained",
+  disabled,
   ...rest
 }: IButton) {
   const colorText =
     variant === "contained" ? styles.textContained : styles.textOutlined;
+  const colorDisabled = disabled ? styles.disabled : "";
 
   return (
     <TouchableHighlight
-      style={[styles.button, styles[variant], style]}
+      style={[styles.button, styles[variant], colorDisabled, style]}
+      disabled={disabled}
       {...rest}
     >
       <Text style={[styles.text, colorText]}>{children}</Text>
@@ -56,5 +59,9 @@ const styles = StyleSheet.create({
 
   text: {
     fontWeight: "bold",
+  },
+
+  disabled: {
+    opacity: 0.3,
   },
 });

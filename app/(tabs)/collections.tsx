@@ -1,60 +1,28 @@
 import { ButtonLink } from "@/components/ButtonLink";
 import { LinkFlashcard } from "@/components/LinkFlashcard";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useFocusEffect } from "expo-router";
-import { useCallback, useState } from "react";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-
-interface IFlashcards {
-  id: string;
-  question: string;
-  answer: string;
-}
-
-interface ICollection {
-  id: string;
-  name: string;
-  flashcards: Array<IFlashcards>;
-}
+import { ScrollViewContainer } from "@/components/ScrollViewContainer";
+import { Typography } from "@/components/Typography";
+import { App } from "@/constants/App";
+import { useGetStorage } from "@/hooks/useGetStorage";
+import { ICollection } from "@/types/app.types";
+import { Image, StyleSheet, View } from "react-native";
 
 export default function Collections() {
-  const [collections, setCollections] = useState<Array<ICollection>>([]);
+  const { data } = useGetStorage<Array<ICollection>>({
+    key: App.keyStorage.collections,
+  });
 
-  const isShowMessageEmptyCollection = collections?.length === 0;
-  const breakLine = "\n";
+  const isShowMessageEmptyCollection = data === null;
 
-  useFocusEffect(
-    useCallback(() => {
-      const loadCollections = async () => {
-        try {
-          const storedCollections = await AsyncStorage.getItem("collections");
-
-          if (storedCollections !== null) {
-            const parsedCollections: Array<ICollection> =
-              JSON.parse(storedCollections);
-
-            setCollections(parsedCollections);
-            return;
-          }
-
-          setCollections([]);
-        } catch (error) {
-          console.error("Failed to load collections:", error);
-        }
-      };
-
-      loadCollections();
-    }, [])
-  );
   return (
     <View style={styles.wrapper}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>Collections</Text>
-        <Text style={styles.description}>
+      <ScrollViewContainer paddingTop={50}>
+        <Typography variant="h2">Collections</Typography>
+        <Typography variant="description">
           Start building your knowledge library. Add a question, write the
           answer, and organize your flashcards by topic. The more you create,
           the more you'll retain!
-        </Text>
+        </Typography>
 
         {isShowMessageEmptyCollection && (
           <View>
@@ -62,19 +30,19 @@ export default function Collections() {
               style={styles.backgroundImage}
               source={require("@/assets/images/empty-collection.png")}
             />
-            <Text style={[styles.description, styles.textCenter]}>
-              Looks like your collection is empty.{breakLine}Start by creating
-              your first one!
-            </Text>
+            <Typography variant="description" style={styles.textCenter}>
+              Looks like your collection is empty.{App.breakLine}Start by
+              creating your first one!
+            </Typography>
           </View>
         )}
 
-        {collections?.map(({ id, name }) => (
+        {data?.map(({ id, name }) => (
           <LinkFlashcard key={id} id={id}>
             {name}
           </LinkFlashcard>
         ))}
-      </ScrollView>
+      </ScrollViewContainer>
 
       <View style={styles.buttonBackground}>
         <View style={styles.fixedButtonContainer}>
@@ -90,22 +58,8 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "relative",
   },
-  container: {
-    paddingTop: 50,
-    paddingBottom: 100,
-    paddingHorizontal: 24,
-  },
   textCenter: {
     textAlign: "center",
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: "bold",
-  },
-  description: {
-    color: "#A1A1A1",
-    fontSize: 13,
-    marginTop: 15,
   },
   backgroundImage: {
     height: 346,

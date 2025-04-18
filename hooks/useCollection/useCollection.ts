@@ -6,6 +6,7 @@ import { Alert } from "react-native";
 import { defineEditField } from "@/hooks/useCollection/utils/define-edit-field";
 import { generateCollection } from "@/hooks/useCollection/utils/generate-collection";
 import { isEmptyFields } from "./utils/is-empty-fields";
+import { App } from "@/constants/App";
 
 interface useCollection {
   initialState?: ICollection | undefined;
@@ -65,14 +66,16 @@ export function useCollection({ initialState }: useCollection = {}) {
         return;
       }
 
-      const existingData = await AsyncStorage.getItem("collections");
+      const existingData = await AsyncStorage.getItem(
+        App.keyStorage.collections
+      );
       const parsedData: ICollection[] = existingData
         ? JSON.parse(existingData)
         : [];
 
       const updatedCollections = [...parsedData, collection];
       await AsyncStorage.setItem(
-        "collections",
+        App.keyStorage.collections,
         JSON.stringify(updatedCollections)
       );
 
