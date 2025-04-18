@@ -1,7 +1,8 @@
 import { ButtonLink } from "@/components/ButtonLink";
 import { LinkFlashcard } from "@/components/LinkFlashcard";
+import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { useGetStorage } from "@/hooks/useGetStorage";
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View } from "react-native";
 
 interface IFlashcards {
   id: string;
@@ -18,12 +19,12 @@ interface ICollection {
 export default function Collections() {
   const { data } = useGetStorage<Array<ICollection>>({ key: "collections" });
 
-  const isShowMessageEmptyCollection = data?.length === 0;
+  const isShowMessageEmptyCollection = data === null;
   const breakLine = "\n";
 
   return (
     <View style={styles.wrapper}>
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollViewContainer paddingTop={5}>
         <Text style={styles.title}>Collections</Text>
         <Text style={styles.description}>
           Start building your knowledge library. Add a question, write the
@@ -49,7 +50,7 @@ export default function Collections() {
             {name}
           </LinkFlashcard>
         ))}
-      </ScrollView>
+      </ScrollViewContainer>
 
       <View style={styles.buttonBackground}>
         <View style={styles.fixedButtonContainer}>
@@ -65,11 +66,7 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "relative",
   },
-  container: {
-    paddingTop: 50,
-    paddingBottom: 100,
-    paddingHorizontal: 24,
-  },
+
   textCenter: {
     textAlign: "center",
   },

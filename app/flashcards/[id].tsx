@@ -1,4 +1,5 @@
 import { Button } from "@/components/Button";
+import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { useGetStorage } from "@/hooks/useGetStorage";
 import { ICollection } from "@/types/app.types";
 import { findById } from "@/utils/find-by-id";
@@ -37,13 +38,7 @@ export default function Flashcards() {
 
   return (
     <View style={styles.wrapper}>
-      <ScrollView
-        scrollEventThrottle={16}
-        decelerationRate="fast"
-        overScrollMode="never"
-        bounces={false}
-        contentContainerStyle={styles.container}
-      >
+      <ScrollViewContainer>
         <Text style={[styles.title, styles.mainTitle]}>{collection.name}</Text>
         <View style={defineCardStyle}>
           <Text style={styles.title}>{currentFlashcard?.question}</Text>
@@ -58,7 +53,7 @@ export default function Flashcards() {
         >
           {isShowAnswer ? "Hidden answer" : "Show answer"}
         </Button>
-      </ScrollView>
+      </ScrollViewContainer>
 
       <View style={styles.fixedButtonContainer}>
         <Button variant="outlined" onPress={handleBack} disabled={active === 0}>
@@ -110,11 +105,6 @@ const styles = StyleSheet.create({
 
   ///
 
-  container: {
-    paddingTop: 50,
-    paddingBottom: 100,
-    paddingHorizontal: 24,
-  },
   fixedButtonContainer: {
     position: "absolute",
     bottom: 30,

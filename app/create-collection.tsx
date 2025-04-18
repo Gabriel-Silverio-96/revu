@@ -1,5 +1,6 @@
 import { Button } from "@/components/Button";
 import { FormCreateFlashcard } from "@/components/FormCreateFlashcard";
+import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { TextInput } from "@/components/TextInput";
 import { useCollection } from "@/hooks/useCollection";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
@@ -17,13 +18,7 @@ export default function CreateCollection() {
 
   return (
     <View style={styles.wrapper}>
-      <ScrollView
-        scrollEventThrottle={16}
-        decelerationRate="fast" // or 'normal', try also 0 if needed
-        overScrollMode="never" // removes glow effect on Android
-        bounces={false} // iOS only
-        contentContainerStyle={styles.container}
-      >
+      <ScrollViewContainer>
         <Text style={styles.title}>Create a flashcards</Text>
         <Text style={styles.description}>
           Start creating your flashcards. Add questions, write clear answers,
@@ -52,7 +47,7 @@ export default function CreateCollection() {
             Add
           </Button>
         </View>
-      </ScrollView>
+      </ScrollViewContainer>
 
       <View style={styles.buttonBackground}>
         <View style={styles.fixedButtonContainer}>
@@ -67,11 +62,6 @@ const styles = StyleSheet.create({
   wrapper: {
     flex: 1,
     position: "relative",
-  },
-  container: {
-    paddingTop: 50,
-    paddingBottom: 100,
-    paddingHorizontal: 24,
   },
   title: {
     fontSize: 24,
