@@ -12,7 +12,7 @@ export default function Collections() {
     key: App.keyStorage.collections,
   });
 
-  const isShowMessageEmptyCollection = data === null;
+  const isShowMessageEmptyCollection = data === null || data?.length === 0;
 
   return (
     <View style={styles.wrapper}>
