@@ -4,6 +4,7 @@ import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
+import { Colors } from "@/constants/Colors";
 import { useCollection } from "@/hooks/useCollection";
 import { useGetStorage } from "@/hooks/useGetStorage";
 import { ICollection } from "@/types/app.types";
@@ -110,11 +111,11 @@ const styles = StyleSheet.create({
     right: 24,
   },
   buttonBackground: {
-    backgroundColor: "#FFF",
+    backgroundColor: Colors.light.backgroundColor,
     height: 100,
   },
   delete: {
-    color: "#FF7C7C",
+    color: Colors.common.red,
     marginTop: 8,
   },
 });

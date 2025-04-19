@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { Ionicons } from "@expo/vector-icons";
 import { Link } from "expo-router";
 import React from "react";
@@ -10,7 +11,7 @@ interface ILinkFlashcard {
 }
 
 const initialIcon = (
-  <Ionicons name="create-outline" size={20} color="#A1A1A1" />
+  <Ionicons name="create-outline" size={20} color={Colors.light.text} />
 );
 
 export function LinkFlashcard({
@@ -48,6 +49,6 @@ const styles = StyleSheet.create({
 
   link: {
     fontSize: 14,
-    color: "#7C87FF",
+    color: Colors.light.primary,
   },
 });

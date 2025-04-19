@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import {
   StyleSheet,
   TextInputProps,
@@ -18,7 +19,7 @@ export function TextInput({ style, multiline, ...rest }: TextInputProps) {
 const styles = StyleSheet.create({
   input: {
     height: 40,
-    borderColor: "#A1A1A1",
+    borderColor: Colors.light.text,
     borderWidth: 1,
     borderRadius: 6,
     marginTop: 5,

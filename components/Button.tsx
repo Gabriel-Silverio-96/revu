@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import {
   StyleSheet,
   Text,
@@ -40,21 +41,21 @@ const styles = StyleSheet.create({
   },
 
   contained: {
-    backgroundColor: "#7C87FF",
+    backgroundColor: Colors.light.primary,
   },
 
   outlined: {
     backgroundColor: "transparent",
-    borderColor: "#7C87FF",
+    borderColor: Colors.light.primary,
     borderWidth: 2,
   },
 
   textContained: {
-    color: "#FFF",
+    color: Colors.common.white,
   },
 
   textOutlined: {
-    color: "#7C87FF",
+    color: Colors.light.primary,
   },
 
   text: {

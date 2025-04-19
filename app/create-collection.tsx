@@ -3,6 +3,7 @@ import { FormFlashcard } from "@/components/FormFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
+import { Colors } from "@/constants/Colors";
 import { useCollection } from "@/hooks/useCollection";
 import { useNavigation } from "expo-router";
 import { useLayoutEffect } from "react";
@@ -79,7 +80,7 @@ const styles = StyleSheet.create({
     right: 24,
   },
   buttonBackground: {
-    backgroundColor: "#FFF",
+    backgroundColor: Colors.light.backgroundColor,
     height: 100,
   },
 });

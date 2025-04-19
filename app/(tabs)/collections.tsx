@@ -3,6 +3,7 @@ import { LinkFlashcard } from "@/components/LinkFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
+import { Colors } from "@/constants/Colors";
 import { useGetStorage } from "@/hooks/useGetStorage";
 import { ICollection } from "@/types/app.types";
 import { Image, StyleSheet, View } from "react-native";
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     right: 24,
   },
   buttonBackground: {
-    backgroundColor: "#FFF",
+    backgroundColor: Colors.light.backgroundColor,
     height: 100,
   },
 });

@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { StyleSheet, Text, TextProps } from "react-native";
 
 interface ITypography extends TextProps {
@@ -25,7 +26,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   description: {
-    color: "#A1A1A1",
+    color: Colors.light.text,
     fontSize: 13,
     marginTop: 15,
   },
