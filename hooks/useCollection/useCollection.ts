@@ -8,12 +8,15 @@ import { generateCollection } from "@/hooks/useCollection/utils/generate-collect
 import { isEmptyFields } from "@/hooks/useCollection/utils/is-empty-fields";
 import { App } from "@/constants/App";
 import { editCollectionById } from "@/hooks/useCollection/utils/edit-collection-by-id";
+import { useRouter } from "expo-router";
+import { parseData } from "./utils/parse-data/parse-data";
 
 interface useCollection {
   initialState?: ICollection | undefined;
 }
 
 export function useCollection({ initialState }: useCollection = {}) {
+  const router = useRouter();
   const [collection, setCollection] = useState<ICollection>(
     initialState || generateCollection()
   );
@@ -124,6 +127,41 @@ export function useCollection({ initialState }: useCollection = {}) {
     [collection]
   );
 
+  const handleDeleteCollection = useCallback(async (id: string | string[]) => {
+    const collections = await parseData();
+    if (collections) {
+      Alert.alert(
+        "Delete all flashcards",
+        "Do you want to remove all flashcards?",
+        [
+          {
+            text: "No",
+            style: "cancel",
+          },
+          {
+            text: "Yes",
+            onPress: async () => {
+              try {
+                const deletedCollection = collections.filter(
+                  (collection) => collection.id !== id
+                );
+
+                await AsyncStorage.setItem(
+                  App.keyStorage.collections,
+                  JSON.stringify(deletedCollection)
+                );
+
+                router.push("/collections");
+              } catch (error) {
+                Alert.alert("Error", "Failed to delete flashcards");
+              }
+            },
+          },
+        ]
+      );
+    }
+  }, []);
+
   return {
     collection,
     setCollection,
@@ -132,5 +170,6 @@ export function useCollection({ initialState }: useCollection = {}) {
     handleDeleteQuestion,
     handleSave,
     handleEditSave,
+    handleDeleteCollection,
   };
 }

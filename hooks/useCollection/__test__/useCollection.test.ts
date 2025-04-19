@@ -3,6 +3,7 @@ import { useCollection } from "../useCollection";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
 import { App } from "@/constants/App";
+import { parseData } from "../utils/parse-data";
 
 jest.mock("@react-native-async-storage/async-storage", () => ({
   getItem: jest.fn(),
@@ -10,6 +11,10 @@ jest.mock("@react-native-async-storage/async-storage", () => ({
 }));
 
 jest.spyOn(Alert, "alert");
+
+jest.mock("../utils/parse-data/parse-data", () => ({
+  parseData: jest.fn(),
+}));
 
 beforeEach(() => {
   jest.clearAllMocks();
@@ -69,7 +74,9 @@ describe("useCollection hook", () => {
 
     const { result } = renderHook(() => useCollection({ initialState }));
 
-    result.current.handleSave();
+    act(() => {
+      result.current.handleSave();
+    });
 
     await waitFor(() => {
       expect(AsyncStorage.setItem).toHaveBeenCalled();
@@ -94,7 +101,9 @@ describe("useCollection hook", () => {
       useCollection({ initialState: updatedCollection })
     );
 
-    result.current.handleEditSave("123");
+    act(() => {
+      result.current.handleEditSave("123");
+    });
 
     await waitFor(() => {
       expect(AsyncStorage.setItem).toHaveBeenCalledWith(
@@ -117,12 +126,45 @@ describe("useCollection hook", () => {
 
     const { result } = renderHook(() => useCollection({ initialState }));
 
-    result.current.handleSave();
+    act(() => {
+      result.current.handleSave();
+    });
 
     await waitFor(() => {
       expect(Alert.alert).toHaveBeenCalledWith(
         "Error",
         "Failed to save collection"
+      );
+    });
+  });
+
+  it("deletes collection", async () => {
+    const collections = [
+      { id: "123", name: "History", flashcards: [] },
+      { id: "456", name: "Science", flashcards: [] },
+    ];
+
+    (parseData as jest.Mock).mockResolvedValue(collections);
+
+    jest.spyOn(Alert, "alert").mockImplementation((_title, _msg, buttons) => {
+      const yesButton = buttons?.find((btn) => btn.text === "Yes");
+      if (yesButton && yesButton.onPress) {
+        yesButton.onPress();
+      }
+    });
+
+    const { result } = renderHook(() => useCollection());
+
+    const collectionId = "123";
+
+    act(() => {
+      result.current.handleDeleteCollection(collectionId);
+    });
+
+    await waitFor(() => {
+      expect(AsyncStorage.setItem).toHaveBeenCalledWith(
+        App.keyStorage.collections,
+        JSON.stringify([{ id: "456", name: "Science", flashcards: [] }])
       );
     });
   });
