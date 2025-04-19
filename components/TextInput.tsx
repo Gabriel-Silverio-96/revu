@@ -10,6 +10,7 @@ export function TextInput({ style, multiline, ...rest }: TextInputProps) {
 
   return (
     <TextInputReactNative
+      multiline={multiline}
       style={[styles.input, stylesMultiline, style]}
       {...rest}
     />
