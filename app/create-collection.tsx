@@ -5,8 +5,6 @@ import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
 import { Colors } from "@/constants/Colors";
 import { useCollection } from "@/hooks/useCollection";
-import { useNavigation } from "expo-router";
-import { useLayoutEffect } from "react";
 import { StyleSheet, View } from "react-native";
 
 export default function CreateCollection() {
@@ -18,11 +16,6 @@ export default function CreateCollection() {
     handleDeleteQuestion,
     handleSave,
   } = useCollection();
-  const navigation = useNavigation();
-
-  useLayoutEffect(() => {
-    navigation.setOptions({ title: "" });
-  }, []);
 
   const isHiddenForSingleFlashcard = collection.flashcards.length > 1;
 
