@@ -6,14 +6,19 @@ import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
 import { useCollection } from "@/hooks/useCollection";
 import { useGetStorage } from "@/hooks/useGetStorage";
+import { ICollection } from "@/types/app.types";
 import { findById } from "@/utils/find-by-id";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect, useLayoutEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableHighlight, View } from "react-native";
 
 export default function EditCollection() {
   const { id } = useLocalSearchParams();
-  const { data } = useGetStorage({ key: App.keyStorage.collections });
+  const navigation = useNavigation();
+  const { data } = useGetStorage<Array<ICollection>>({
+    key: App.keyStorage.collections,
+  });
+
   const {
     collection,
     setCollection,
@@ -21,6 +26,7 @@ export default function EditCollection() {
     handleChangeValue,
     handleDeleteQuestion,
     handleEditSave,
+    handleDeleteCollection,
   } = useCollection();
 
   useEffect(() => {
@@ -29,8 +35,6 @@ export default function EditCollection() {
       setCollection(initialState);
     }
   }, [data, id]);
-
-  const navigation = useNavigation();
 
   useLayoutEffect(() => {
     navigation.setOptions({ title: "" });
@@ -42,6 +46,15 @@ export default function EditCollection() {
     <View style={styles.wrapper}>
       <ScrollViewContainer>
         <Typography variant="h2">Edit flashcards</Typography>
+        <TouchableHighlight>
+          <Typography
+            variant="description"
+            style={styles.delete}
+            onPress={() => handleDeleteCollection(id)}
+          >
+            Delete
+          </Typography>
+        </TouchableHighlight>
         <Typography variant="description">
           Make changes to your flashcards here. You can update the question,
           answer, or delete the card entirely. Don't forget to save when you're
@@ -95,5 +108,8 @@ const styles = StyleSheet.create({
   buttonBackground: {
     backgroundColor: "#FFF",
     height: 100,
+  },
+  delete: {
+    color: "#FF7C7C",
   },
 });
