@@ -1,33 +1,36 @@
 import { ButtonLink } from "@/components/ButtonLink";
+import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
 import { Image, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
-      <View style={styles.image}>
+    <ScrollViewContainer>
+      <View style={styles.container}>
+        <View style={styles.image}>
+          <Image
+            style={styles.logo}
+            source={require("@/assets/images/revu-logo.png")}
+          />
+        </View>
         <Image
-          style={styles.logo}
-          source={require("@/assets/images/revu-logo.png")}
+          style={styles.backgroundImage}
+          source={require("@/assets/images/background-get-started.png")}
         />
+        <Typography variant="h1" style={styles.title}>
+          Review {App.breakLine}remember and {App.breakLine}repeat
+        </Typography>
+        <Typography variant="description" style={styles.description}>
+          Your daily companion to smarter,{App.breakLine} faster learning.
+        </Typography>
+        <View style={styles.action}>
+          <ButtonLink href="/collections" style={styles.button}>
+            Get started
+          </ButtonLink>
+        </View>
       </View>
-      <Image
-        style={styles.backgroundImage}
-        source={require("@/assets/images/background-get-started.png")}
-      />
-      <Typography variant="h1" style={styles.title}>
-        Review {App.breakLine}remember and {App.breakLine}repeat
-      </Typography>
-      <Typography variant="description" style={styles.description}>
-        Your daily companion to smarter,{App.breakLine} faster learning.
-      </Typography>
-      <View style={styles.action}>
-        <ButtonLink href="/collections" style={styles.button}>
-          Get started
-        </ButtonLink>
-      </View>
-    </View>
+    </ScrollViewContainer>
   );
 }
 
