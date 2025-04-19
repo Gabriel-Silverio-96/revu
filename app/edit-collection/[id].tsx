@@ -45,16 +45,14 @@ export default function EditCollection() {
   return (
     <View style={styles.wrapper}>
       <ScrollViewContainer>
-        <Typography variant="h2">Edit flashcards</Typography>
-        <TouchableHighlight>
-          <Typography
-            variant="description"
-            style={styles.delete}
-            onPress={() => handleDeleteCollection(id)}
-          >
-            Delete
-          </Typography>
-        </TouchableHighlight>
+        <View style={styles.header}>
+          <Typography variant="h2">Edit flashcards</Typography>
+          <TouchableHighlight onPress={() => handleDeleteCollection(id)}>
+            <Typography variant="description" style={styles.delete}>
+              Delete
+            </Typography>
+          </TouchableHighlight>
+        </View>
         <Typography variant="description">
           Make changes to your flashcards here. You can update the question,
           answer, or delete the card entirely. Don't forget to save when you're
@@ -99,6 +97,12 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "relative",
   },
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignContent: "center",
+  },
   fixedButtonContainer: {
     position: "absolute",
     bottom: 30,
@@ -111,5 +115,6 @@ const styles = StyleSheet.create({
   },
   delete: {
     color: "#FF7C7C",
+    marginTop: 8,
   },
 });
