@@ -1,6 +1,13 @@
-# Welcome to your Expo app 👋
+<p align="center">
+<img alt="Background revu" src="https://private-user-images.githubusercontent.com/53228013/435427145-ae7827fd-4ce6-413a-99aa-88feb1fc3608.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDUxMDIyMDQsIm5iZiI6MTc0NTEwMTkwNCwicGF0aCI6Ii81MzIyODAxMy80MzU0MjcxNDUtYWU3ODI3ZmQtNGNlNi00MTNhLTk5YWEtODhmZWIxZmMzNjA4LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA0MTklMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwNDE5VDIyMzE0NFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTI0MTBmY2I2Yzg3YzJiMTY2YmViNjA0ZWFjYzZhNmU3YTc0MTJjOGRhZGQ1YjAyMzZlMzgzZTYwNzc5NmIzOTkmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.b23dIabFPu3qdU_Ie4qRoxM0UhVO7kF7iU2KSkl_Q10"/>
+</p>
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+<h1 align="center">
+ Revu
+</h1>
+
+_Revu_ is a flashcard-style learning app built using [Expo](https://expo.dev/). It helps you review and retain knowledge more effectively using spaced repetition and custom collection.
+
 
 ## Get started
 
@@ -25,26 +32,3 @@ In the output, you'll find options to open the app in a
 
 You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
 
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
