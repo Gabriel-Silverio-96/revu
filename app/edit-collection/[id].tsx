@@ -4,16 +4,22 @@ import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
+import { Colors } from "@/constants/Colors";
 import { useCollection } from "@/hooks/useCollection";
 import { useGetStorage } from "@/hooks/useGetStorage";
+import { ICollection } from "@/types/app.types";
 import { findById } from "@/utils/find-by-id";
 import { useLocalSearchParams, useNavigation } from "expo-router";
 import { useEffect, useLayoutEffect } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, TouchableHighlight, View } from "react-native";
 
 export default function EditCollection() {
   const { id } = useLocalSearchParams();
-  const { data } = useGetStorage({ key: App.keyStorage.collections });
+  const navigation = useNavigation();
+  const { data } = useGetStorage<Array<ICollection>>({
+    key: App.keyStorage.collections,
+  });
+
   const {
     collection,
     setCollection,
@@ -21,6 +27,7 @@ export default function EditCollection() {
     handleChangeValue,
     handleDeleteQuestion,
     handleEditSave,
+    handleDeleteCollection,
   } = useCollection();
 
   useEffect(() => {
@@ -29,8 +36,6 @@ export default function EditCollection() {
       setCollection(initialState);
     }
   }, [data, id]);
-
-  const navigation = useNavigation();
 
   useLayoutEffect(() => {
     navigation.setOptions({ title: "" });
@@ -41,7 +46,14 @@ export default function EditCollection() {
   return (
     <View style={styles.wrapper}>
       <ScrollViewContainer>
-        <Typography variant="h2">Edit flashcards</Typography>
+        <View style={styles.header}>
+          <Typography variant="h2">Edit flashcards</Typography>
+          <TouchableHighlight onPress={() => handleDeleteCollection(id)}>
+            <Typography variant="description" style={styles.delete}>
+              Delete
+            </Typography>
+          </TouchableHighlight>
+        </View>
         <Typography variant="description">
           Make changes to your flashcards here. You can update the question,
           answer, or delete the card entirely. Don't forget to save when you're
@@ -86,6 +98,12 @@ const styles = StyleSheet.create({
     flex: 1,
     position: "relative",
   },
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignContent: "center",
+  },
   fixedButtonContainer: {
     position: "absolute",
     bottom: 30,
@@ -93,7 +111,11 @@ const styles = StyleSheet.create({
     right: 24,
   },
   buttonBackground: {
-    backgroundColor: "#FFF",
+    backgroundColor: Colors.light.backgroundColor,
     height: 100,
+  },
+  delete: {
+    color: Colors.common.red,
+    marginTop: 8,
   },
 });

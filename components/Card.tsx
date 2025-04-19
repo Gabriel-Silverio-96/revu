@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { StyleSheet, Text, View } from "react-native";
 
 interface ICard {
@@ -19,7 +20,7 @@ export function Card({ open, title, describe }: ICard) {
 
 const styles = StyleSheet.create({
   card: {
-    backgroundColor: "#FFE7CF",
+    backgroundColor: Colors.common.orange,
     padding: 25,
     height: 200,
     display: "flex",

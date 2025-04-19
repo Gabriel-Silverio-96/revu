@@ -3,6 +3,7 @@ import { LinkFlashcard } from "@/components/LinkFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
+import { Colors } from "@/constants/Colors";
 import { useGetStorage } from "@/hooks/useGetStorage";
 import { ICollection } from "@/types/app.types";
 import { Image, StyleSheet, View } from "react-native";
@@ -12,7 +13,7 @@ export default function Collections() {
     key: App.keyStorage.collections,
   });
 
-  const isShowMessageEmptyCollection = data === null;
+  const isShowMessageEmptyCollection = data === null || data?.length === 0;
 
   return (
     <View style={styles.wrapper}>
@@ -73,7 +74,7 @@ const styles = StyleSheet.create({
     right: 24,
   },
   buttonBackground: {
-    backgroundColor: "#FFF",
+    backgroundColor: Colors.light.backgroundColor,
     height: 100,
   },
 });

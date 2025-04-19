@@ -1,4 +1,5 @@
 import { TextInput } from "@/components/TextInput";
+import { Colors } from "@/constants/Colors";
 import { HandleChangeValue, IFlashcard } from "@/types/app.types";
 import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 
@@ -54,12 +55,12 @@ export function FormFlashcard({
 
 const styles = StyleSheet.create({
   description: {
-    color: "#A1A1A1",
+    color: Colors.light.text,
     fontSize: 13,
     marginTop: 15,
   },
   delete: {
-    color: "#FF7C7C",
+    color: Colors.common.red,
     fontSize: 13,
     marginTop: 15,
   },

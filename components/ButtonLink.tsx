@@ -1,3 +1,4 @@
+import { Colors } from "@/constants/Colors";
 import { Href, Link, LinkProps } from "expo-router";
 import { StyleSheet, Text } from "react-native";
 
@@ -17,14 +18,14 @@ export function ButtonLink({ href, children, style, ...rest }: IButtonLink) {
 const styles = StyleSheet.create({
   button: {
     padding: 15,
-    backgroundColor: "#7C87FF",
+    backgroundColor: Colors.light.primary,
     borderRadius: 9,
     alignItems: "center",
     textAlign: "center",
   },
 
   text: {
-    color: "#fff",
+    color: Colors.common.white,
     fontWeight: "bold",
   },
 });
