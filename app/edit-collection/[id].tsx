@@ -42,7 +42,7 @@ export default function EditCollection() {
     <View style={styles.wrapper}>
       <ScrollViewContainer>
         <View style={styles.header}>
-          <Typography variant="h2">Edit flashcards</Typography>
+          <Typography variant="h2">Edit collection</Typography>
           <TouchableHighlight onPress={() => handleDeleteCollection(id)}>
             <Typography variant="description" style={styles.delete}>
               Delete

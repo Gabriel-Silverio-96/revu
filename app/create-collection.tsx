@@ -22,13 +22,13 @@ export default function CreateCollection() {
   return (
     <View style={styles.wrapper}>
       <ScrollViewContainer>
-        <Typography variant="h2">Create a flashcards</Typography>
+        <Typography variant="h2">Create a collection</Typography>
         <Typography variant="description">
           Start creating your flashcards. Add questions, write clear answers,
           and group them into collections.
         </Typography>
 
-        <Typography variant="description">Name of collection</Typography>
+        <Typography variant="description">Name</Typography>
         <TextInput
           style={{ marginBottom: 15 }}
           value={collection.name}

@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
+import { Alert } from "react-native";
 
 const INITIAL_DATA = null;
 
@@ -26,7 +27,7 @@ export function useGetStorage<T = null>({ key }: useGetStorage) {
 
           setData(INITIAL_DATA);
         } catch (error) {
-          console.error("Failed to load data:", error);
+          Alert.alert("Error", "Failed to load data");
         }
       };
 

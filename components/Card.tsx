@@ -12,7 +12,7 @@ export function Card({ open, title, describe }: ICard) {
 
   return (
     <View style={defineCardStyle}>
-      <Text style={styles.title}>{title}</Text>
+      <Text style={styles.title}>{title}?</Text>
       {open && <Text style={styles.description}>{describe}</Text>}
     </View>
   );

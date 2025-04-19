@@ -130,35 +130,31 @@ export function useCollection({ initialState }: useCollection = {}) {
   const handleDeleteCollection = useCallback(async (id: string | string[]) => {
     const collections = await parseData();
     if (collections) {
-      Alert.alert(
-        "Delete all flashcards",
-        "Do you want to remove all flashcards?",
-        [
-          {
-            text: "No",
-            style: "cancel",
-          },
-          {
-            text: "Yes",
-            onPress: async () => {
-              try {
-                const deletedCollection = collections.filter(
-                  (collection) => collection.id !== id
-                );
+      Alert.alert("Delete collection", "Would you like to remove it?", [
+        {
+          text: "No",
+          style: "cancel",
+        },
+        {
+          text: "Yes",
+          onPress: async () => {
+            try {
+              const deletedCollection = collections.filter(
+                (collection) => collection.id !== id
+              );
 
-                await AsyncStorage.setItem(
-                  App.keyStorage.collections,
-                  JSON.stringify(deletedCollection)
-                );
+              await AsyncStorage.setItem(
+                App.keyStorage.collections,
+                JSON.stringify(deletedCollection)
+              );
 
-                router.push("/collections");
-              } catch (error) {
-                Alert.alert("Error", "Failed to delete flashcards");
-              }
-            },
+              router.push("/collections");
+            } catch (error) {
+              Alert.alert("Error", "Failed to delete collection");
+            }
           },
-        ]
-      );
+        },
+      ]);
     }
   }, []);
 
