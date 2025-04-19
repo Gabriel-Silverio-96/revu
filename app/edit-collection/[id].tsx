@@ -9,13 +9,12 @@ import { useCollection } from "@/hooks/useCollection";
 import { useGetStorage } from "@/hooks/useGetStorage";
 import { ICollection } from "@/types/app.types";
 import { findById } from "@/utils/find-by-id";
-import { useLocalSearchParams, useNavigation } from "expo-router";
-import { useEffect, useLayoutEffect } from "react";
+import { useLocalSearchParams } from "expo-router";
+import { useEffect } from "react";
 import { StyleSheet, TouchableHighlight, View } from "react-native";
 
 export default function EditCollection() {
   const { id } = useLocalSearchParams();
-  const navigation = useNavigation();
   const { data } = useGetStorage<Array<ICollection>>({
     key: App.keyStorage.collections,
   });
@@ -36,10 +35,6 @@ export default function EditCollection() {
       setCollection(initialState);
     }
   }, [data, id]);
-
-  useLayoutEffect(() => {
-    navigation.setOptions({ title: "" });
-  }, []);
 
   const isHiddenForSingleFlashcard = collection.flashcards.length > 1;
 

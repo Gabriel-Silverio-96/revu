@@ -17,7 +17,7 @@ export default function Collections() {
 
   return (
     <View style={styles.wrapper}>
-      <ScrollViewContainer paddingTop={50}>
+      <ScrollViewContainer paddingTop={10}>
         <Typography variant="h2">Collections</Typography>
         <Typography variant="description">
           Start building your knowledge library. Add a question, write the
