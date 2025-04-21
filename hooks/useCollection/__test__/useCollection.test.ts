@@ -82,7 +82,8 @@ describe("useCollection hook", () => {
       expect(AsyncStorage.setItem).toHaveBeenCalled();
       expect(Alert.alert).toHaveBeenCalledWith(
         "Success",
-        "Collection saved successfully!"
+        "Collection saved successfully!",
+        expect.any(Array)
       );
     });
   });
