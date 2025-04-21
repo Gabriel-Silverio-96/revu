@@ -1,8 +1,3 @@
-interface Keys {
-  id: string;
-  [key: string]: any;
-}
-
 interface IFindById {
   data: any;
   id?: string | string[];
