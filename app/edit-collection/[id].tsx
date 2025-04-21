@@ -44,7 +44,9 @@ export default function EditCollection() {
       <ScrollViewContainer>
         <View style={styles.header}>
           <Typography variant="h2">Edit collection</Typography>
-          <TouchableHighlight onPress={() => handleDeleteCollection(id)}>
+          <TouchableHighlight
+            onPress={async () => await handleDeleteCollection(id)}
+          >
             <Typography variant="description" style={styles.delete}>
               Delete
             </Typography>
@@ -82,7 +84,7 @@ export default function EditCollection() {
 
       <View style={styles.buttonBackground}>
         <View style={styles.fixedButtonContainer}>
-          <Button onPress={() => handleEditSave(id)}>Save</Button>
+          <Button onPress={async () => await handleEditSave(id)}>Save</Button>
         </View>
       </View>
     </View>
