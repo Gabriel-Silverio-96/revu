@@ -75,14 +75,9 @@ export function useCollection({ initialState }: useCollection = {}) {
         return;
       }
 
-      const existingData = await AsyncStorage.getItem(
-        App.keyStorage.collections
-      );
-      const parsedData: ICollection[] = existingData
-        ? JSON.parse(existingData)
-        : [];
+      const collections = await parseData();
+      const updatedCollections = [...collections, collection];
 
-      const updatedCollections = [...parsedData, collection];
       await AsyncStorage.setItem(
         App.keyStorage.collections,
         JSON.stringify(updatedCollections)
@@ -112,16 +107,9 @@ export function useCollection({ initialState }: useCollection = {}) {
           return;
         }
 
-        const existingData = await AsyncStorage.getItem(
-          App.keyStorage.collections
-        );
-
-        const parsedData: ICollection[] = existingData
-          ? JSON.parse(existingData)
-          : [];
-
+        const collections = await parseData();
         const updatedCollections = editCollectionById({
-          data: parsedData,
+          data: collections,
           id,
           value: collection,
         });
