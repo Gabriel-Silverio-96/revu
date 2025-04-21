@@ -1,10 +1,11 @@
-import { Colors } from "@/constants/Colors";
 import {
   StyleSheet,
   Text,
   TouchableHighlight,
-  TouchableHighlightProps,
+  type TouchableHighlightProps,
 } from "react-native";
+
+import { Colors } from "@/constants/Colors";
 
 interface IButton extends TouchableHighlightProps {
   variant?: "contained" | "outlined";

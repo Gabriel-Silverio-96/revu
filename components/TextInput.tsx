@@ -1,9 +1,10 @@
-import { Colors } from "@/constants/Colors";
 import {
   StyleSheet,
-  TextInputProps,
+  type TextInputProps,
   TextInput as TextInputReactNative,
 } from "react-native";
+
+import { Colors } from "@/constants/Colors";
 
 export function TextInput({ style, multiline, ...rest }: TextInputProps) {
   const stylesMultiline = multiline && styles.mutiline;

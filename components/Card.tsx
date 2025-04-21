@@ -1,5 +1,6 @@
-import { Colors } from "@/constants/Colors";
 import { StyleSheet, Text, View } from "react-native";
+
+import { Colors } from "@/constants/Colors";
 
 interface ICard {
   open: boolean;
@@ -8,7 +9,7 @@ interface ICard {
 }
 
 export function Card({ open, title, describe }: ICard) {
-  const defineCardStyle = open ? [styles.card, styles.openCard] : [styles.card];
+  const defineCardStyle = open ? [styles.card, styles.open] : [styles.card];
 
   return (
     <View style={defineCardStyle}>
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
 
-  openCard: {
+  open: {
     height: 350,
   },
 

@@ -1,4 +1,4 @@
-import { ScrollView, ScrollViewProps, StyleSheet } from "react-native";
+import { ScrollView, type ScrollViewProps, StyleSheet } from "react-native";
 
 interface IScrollViewContainer extends ScrollViewProps {
   children: React.ReactNode;

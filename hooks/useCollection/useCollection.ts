@@ -1,15 +1,20 @@
-import { HandleChangeValue, ICollection, IFlashcard } from "@/types/app.types";
 import * as Crypto from "expo-crypto";
 import { useCallback, useState } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Alert } from "react-native";
+import { useRouter } from "expo-router";
+
+import type {
+  HandleChangeValue,
+  ICollection,
+  IFlashcard,
+} from "@/types/app.types";
 import { defineEditField } from "@/hooks/useCollection/utils/define-edit-field";
 import { generateCollection } from "@/hooks/useCollection/utils/generate-collection";
 import { isEmptyFields } from "@/hooks/useCollection/utils/is-empty-fields";
 import { App } from "@/constants/App";
 import { editCollectionById } from "@/hooks/useCollection/utils/edit-collection-by-id";
-import { useRouter } from "expo-router";
-import { parseData } from "./utils/parse-data/parse-data";
+import { parseData } from "@/hooks/useCollection/utils/parse-data/parse-data";
 
 interface useCollection {
   initialState?: ICollection | undefined;

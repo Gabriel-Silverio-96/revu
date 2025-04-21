@@ -1,8 +1,9 @@
+import { Image, StyleSheet, View } from "react-native";
+
 import { ButtonLink } from "@/components/ButtonLink";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
 import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
-import { Image, StyleSheet, View } from "react-native";
 
 export default function HomeScreen() {
   return (

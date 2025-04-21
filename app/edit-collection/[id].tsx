@@ -1,3 +1,7 @@
+import { useLocalSearchParams } from "expo-router";
+import { useEffect } from "react";
+import { StyleSheet, TouchableHighlight, View } from "react-native";
+
 import { Button } from "@/components/Button";
 import { FormFlashcard } from "@/components/FormFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
@@ -7,11 +11,8 @@ import { App } from "@/constants/App";
 import { Colors } from "@/constants/Colors";
 import { useCollection } from "@/hooks/useCollection";
 import { useGetStorage } from "@/hooks/useGetStorage";
-import { ICollection } from "@/types/app.types";
+import type { ICollection } from "@/types/app.types";
 import { findById } from "@/utils/find-by-id";
-import { useLocalSearchParams } from "expo-router";
-import { useEffect } from "react";
-import { StyleSheet, TouchableHighlight, View } from "react-native";
 
 export default function EditCollection() {
   const { id } = useLocalSearchParams();
