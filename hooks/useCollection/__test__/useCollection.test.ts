@@ -70,7 +70,7 @@ describe("useCollection hook", () => {
   });
 
   it("saves collection to AsyncStorage", async () => {
-    (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(null);
+    (parseData as jest.Mock).mockResolvedValue([]);
 
     const { result } = renderHook(() => useCollection({ initialState }));
 
@@ -82,15 +82,14 @@ describe("useCollection hook", () => {
       expect(AsyncStorage.setItem).toHaveBeenCalled();
       expect(Alert.alert).toHaveBeenCalledWith(
         "Success",
-        "Collection saved successfully!"
+        "Collection saved successfully!",
+        expect.any(Array)
       );
     });
   });
 
   it("edits an existing collection and saves to AsyncStorage", async () => {
-    (AsyncStorage.getItem as jest.Mock).mockResolvedValueOnce(
-      JSON.stringify([initialState])
-    );
+    (parseData as jest.Mock).mockResolvedValue([initialState]);
 
     const updatedCollection = {
       ...initialState,
@@ -120,9 +119,7 @@ describe("useCollection hook", () => {
   });
 
   it("handles error save", async () => {
-    (AsyncStorage.getItem as jest.Mock).mockRejectedValueOnce(
-      new Error("fail")
-    );
+    (parseData as jest.Mock).mockRejectedValueOnce(new Error("fail"));
 
     const { result } = renderHook(() => useCollection({ initialState }));
 

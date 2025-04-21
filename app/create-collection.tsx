@@ -55,7 +55,7 @@ export default function CreateCollection() {
 
       <View style={styles.buttonBackground}>
         <View style={styles.fixedButtonContainer}>
-          <Button onPress={handleSave}>Save</Button>
+          <Button onPress={async () => await handleSave()}>Save</Button>
         </View>
       </View>
     </View>
