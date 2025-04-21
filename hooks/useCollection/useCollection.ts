@@ -16,11 +16,30 @@ import { App } from "@/constants/App";
 import { editCollectionById } from "@/hooks/useCollection/utils/edit-collection-by-id";
 import { parseData } from "@/hooks/useCollection/utils/parse-data/parse-data";
 
-interface useCollection {
+interface UseCollection {
   initialState?: ICollection | undefined;
 }
 
-export function useCollection({ initialState }: useCollection = {}) {
+export interface UseCollectionReturn {
+  collection: ICollection;
+  setCollection: React.Dispatch<React.SetStateAction<ICollection>>;
+  handleAddFlashcard: () => void;
+  handleChangeValue: (params: HandleChangeValue) => void;
+  handleDeleteQuestion: (id: string) => void;
+  handleSave: () => Promise<void>;
+  handleEditSave: (id: string | string[]) => Promise<void>;
+  handleDeleteCollection: (id: string | string[]) => Promise<void>;
+}
+
+/**
+ * Custom React hook for managing a flashcard collection.
+ *
+ * This hook handles creating, editing, saving, and deleting flashcard collections,
+ * as well as adding and removing individual flashcards within a collection.
+ */
+export function useCollection({
+  initialState,
+}: UseCollection = {}): UseCollectionReturn {
   const router = useRouter();
   const [collection, setCollection] = useState<ICollection>(
     initialState || generateCollection()
