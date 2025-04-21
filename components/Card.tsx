@@ -1,5 +1,6 @@
-import { Colors } from "@/constants/Colors";
 import { StyleSheet, Text, View } from "react-native";
+
+import { Colors } from "@/constants/Colors";
 
 interface ICard {
   open: boolean;

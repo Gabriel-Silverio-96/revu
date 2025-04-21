@@ -1,6 +1,7 @@
-import { Colors } from "@/constants/Colors";
-import { Href, Link, LinkProps } from "expo-router";
+import { Href, Link, type LinkProps } from "expo-router";
 import { StyleSheet, Text } from "react-native";
+
+import { Colors } from "@/constants/Colors";
 
 interface IButtonLink extends LinkProps {
   href: Href;

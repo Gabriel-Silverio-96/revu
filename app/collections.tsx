@@ -1,3 +1,5 @@
+import { Image, StyleSheet, View } from "react-native";
+
 import { ButtonLink } from "@/components/ButtonLink";
 import { LinkFlashcard } from "@/components/LinkFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
@@ -5,8 +7,7 @@ import { Typography } from "@/components/Typography";
 import { App } from "@/constants/App";
 import { Colors } from "@/constants/Colors";
 import { useGetStorage } from "@/hooks/useGetStorage";
-import { ICollection } from "@/types/app.types";
-import { Image, StyleSheet, View } from "react-native";
+import type { ICollection } from "@/types/app.types";
 
 export default function Collections() {
   const { data } = useGetStorage<Array<ICollection>>({

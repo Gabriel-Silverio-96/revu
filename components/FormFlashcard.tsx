@@ -1,7 +1,8 @@
+import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
+
 import { TextInput } from "@/components/TextInput";
 import { Colors } from "@/constants/Colors";
 import { HandleChangeValue, IFlashcard } from "@/types/app.types";
-import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
 
 interface IFormCreateFlashcard {
   handleDeleteQuestion: (id: string) => void;
@@ -59,11 +60,13 @@ const styles = StyleSheet.create({
     fontSize: 13,
     marginTop: 15,
   },
+
   delete: {
     color: Colors.common.red,
     fontSize: 13,
     marginTop: 15,
   },
+
   action: {
     display: "flex",
     flexDirection: "row",

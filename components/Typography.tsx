@@ -1,5 +1,5 @@
 import { Colors } from "@/constants/Colors";
-import { StyleSheet, Text, TextProps } from "react-native";
+import { StyleSheet, Text, type TextProps } from "react-native";
 
 interface ITypography extends TextProps {
   children: React.ReactNode;
@@ -21,10 +21,12 @@ const styles = StyleSheet.create({
     fontSize: 40,
     fontWeight: "bold",
   },
+
   h2: {
     fontSize: 24,
     fontWeight: "bold",
   },
+
   description: {
     color: Colors.light.text,
     fontSize: 13,

@@ -1,3 +1,5 @@
+import { StyleSheet, View } from "react-native";
+
 import { Button } from "@/components/Button";
 import { FormFlashcard } from "@/components/FormFlashcard";
 import { ScrollViewContainer } from "@/components/ScrollViewContainer";
@@ -5,7 +7,6 @@ import { TextInput } from "@/components/TextInput";
 import { Typography } from "@/components/Typography";
 import { Colors } from "@/constants/Colors";
 import { useCollection } from "@/hooks/useCollection";
-import { StyleSheet, View } from "react-native";
 
 export default function CreateCollection() {
   const {
