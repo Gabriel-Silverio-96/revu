@@ -16,10 +16,10 @@ export function useGetStorage<T = null>({ key }: useGetStorage) {
     useCallback(() => {
       const getItemStorage = async () => {
         try {
-          const storedCollections = await AsyncStorage.getItem(key);
+          const storagedData = await AsyncStorage.getItem(key);
 
-          if (storedCollections !== null) {
-            const parsed: T = JSON.parse(storedCollections);
+          if (storagedData !== null) {
+            const parsed: T = JSON.parse(storagedData);
 
             setData(parsed);
             return;
