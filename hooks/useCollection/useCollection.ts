@@ -88,7 +88,14 @@ export function useCollection({ initialState }: useCollection = {}) {
         JSON.stringify(updatedCollections)
       );
 
-      Alert.alert("Success", "Collection saved successfully!");
+      Alert.alert("Success", "Collection saved successfully!", [
+        {
+          text: "Ok",
+          onPress: () => {
+            router.push("/collections");
+          },
+        },
+      ]);
     } catch (error) {
       Alert.alert("Error", "Failed to save collection");
     }
