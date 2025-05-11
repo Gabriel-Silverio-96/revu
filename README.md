@@ -10,11 +10,11 @@ _Revu_ is a flashcard-style learning app built using [Expo](https://expo.dev/). 
 
 <a href="https://github.com/Gabriel-Silverio-96/revu/#demo">Demo</a>
 
-## ✨ Features
-- 🧠 Review flashcards to enhance memory retention
-- 📚 Create and manage custom collections by topic
-- ✍️ Add questions and answers to build your own knowledge base
-- 🗂️ Organize flashcards by subject like History, Math, or Science
+## Features
+- Review flashcards to enhance memory retention
+- Create and manage custom collections by topic
+- Add questions and answers to build your own knowledge base
+- Organize flashcards by subject like History, Math, or Science
 
 ## Get started
 
